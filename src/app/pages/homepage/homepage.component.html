@@ -1,23 +1,26 @@
+
 <div class="outer_container" style="margin: 10%">
+  <h1 style="text-align: center">URL shortener</h1>
+  <p style="text-align: center">This service helps you to reduce long links</p>
   <div class="inner_container">
-  <form>
-    <div class="mb-3">
-      <label for="long-url" class="form-label">URL</label>
-      <input type="text" class="form-control" id="long-url" aria-describedby="urlHelp">
-      <div id="urlHelp" class="form-text">Please enter a valid url you want to shorten.</div>
-    </div>
-    <div class="mb-3">
-      <label for="expiration-date" class="form-label">Expiration date (optional)</label>
-      <input type="date" class="form-control" id="expiration-date">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <form>
+      <div class="mb-3">
+        <label for="long-url" class="form-label">URL</label>
+        <input type="text" class="form-control" id="long-url" aria-describedby="urlHelp">
+        <div id="urlHelp" class="form-text">Please enter a valid url you want to shorten.</div>
+      </div>
+      <div class="mb-3">
+        <label for="expiration-date" class="form-label">Expiration date (optional)</label>
+        <input type="date" class="form-control" id="expiration-date">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
-  <div class="d-grid gap-2 col-6 mx-auto" >
+  <div class="d-grid gap-2 col-6 mx-auto"  *ngIf="false">
     <button class="btn btn-outline-primary" type="button">your short code is: oxjq0</button>
   </div>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-    <button class="btn btn-primary" type="button">View statistics</button>
+    <button class="btn btn-primary" type="button" routerLink="/statistics">View statistics</button>
   </div>
 </div>
