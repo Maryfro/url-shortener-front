@@ -1,14 +1,7 @@
-<div class="outer_container" style="margin: 10%" *ngIf="topFive">
+<div class="outer_container" style="margin: 10%" *ngIf="statistics">
   <h1>Top 5 visited links</h1>
 <ol class="list-group list-group-numbered">
-  <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let elt of topFive">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">{{elt.longUrl}}</div>
-      {{elt.shortUrl}}
-    </div>
-    <span class="badge bg-primary rounded-pill">{{elt.counter}}</span>
-  </li>
-
+  <app-statistics-item *ngFor="let elt of statistics; index as i" [elt]="elt" [index]="i+1"></app-statistics-item>
 </ol>
   <br>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">

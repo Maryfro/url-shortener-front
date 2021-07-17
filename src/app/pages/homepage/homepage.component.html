@@ -10,17 +10,18 @@
           class="form-control"
           id="long-url"
           aria-describedby="urlHelp"
-          
-          formControlName="url"
+
+          formControlName="url"  [class.is-invalid]="form.controls.url.invalid && (form.controls.url.dirty || form.controls.url.touched)"
+          [class.is-valid]="form.controls.url.valid && (form.controls.url.dirty || form.controls.url.touched)"
         />
         <div id="urlHelp" class="form-text">
-          Please enter a valid url you want to shorten.
+          Please enter a valid url you want to shorten
         </div>
       </div>
 
-      <div *ngIf="form.controls.url.errors && form.dirty" class="alert alert-danger">
+      <div *ngIf="form.controls.url.errors && (form.dirty || form.touched)" class="alert alert-danger">
         <p *ngIf="form.controls.url.hasError('pattern')">URL is not valid</p>
-    
+
         <p *ngIf="form.controls.url.hasError('required')">URL is required</p>
       </div>
       <div class="mb-3">
@@ -32,12 +33,15 @@
           class="form-control"
           id="expiration-date"
           formControlName="date"
+          [ngClass]="!form.controls.date.errors ? 'is-valid' : 'is-invalid' "
         />
+      </div>
+      <div class="mt-2 mb-2" *ngIf="form.controls.date.errors && (form.dirty || form.touched)">
+        <p *ngIf="form.controls.date.hasError('isBeforeToday')" class=" alert alert-danger">isBeforeToday</p>
       </div>
       <button
         type="submit"
         class="btn btn-primary"
-        (click)="mouseClick()"
         [disabled]="form.invalid"
       >
         Submit
@@ -46,9 +50,9 @@
   </div>
 
 
-  <div class="d-grid gap-2 col-6 mx-auto" *ngIf="false">
-    <button class="btn btn-outline-primary" type="button">
-      your short code is: oxjq0
+  <div class="d-grid gap-2 col-6 mx-auto" *ngIf="shortUrl">
+    <button class="btn btn-outline-primary" type="button" (click)="navigateByUrl(shortUrl.shortUrl)">
+      your short code is: {{shortUrl.shortUrl}}
     </button>
   </div>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">

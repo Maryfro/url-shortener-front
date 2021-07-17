@@ -7,19 +7,23 @@ import {StatisticsComponent} from './pages/statistics/statistics.component';
 import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { StatisticsItemComponent } from './pages/statistics/statistics-item/statistics-item.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    StatisticsItemComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

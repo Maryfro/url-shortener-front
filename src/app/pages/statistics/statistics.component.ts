@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {StatisticsService} from "../../service/statistics.service";
+import {Statistics} from "./statistics.interface";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-statistics',
@@ -6,20 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  topFive: {longUrl:string, shortUrl:string, counter:number} []= [];
+  statistics!: Statistics[];
 
-
-  constructor() { }
+  constructor(private statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
-    // this.topFive= [];
-    this.topFive.push(
-      {longUrl:"http://google.com",shortUrl:"bYd8fs", counter:148 },
-      {longUrl:"http://zoom.com/test1",shortUrl:"cetI0X", counter:145 },
-      {longUrl:"http://yahoo.com",shortUrl:"bKpHI4", counter:139 },
-      {longUrl:"http://facebook.com",shortUrl:"oxjq0", counter:134 },
-      {longUrl:"http://meduza.io",shortUrl:"bTc7Sc", counter:131 }
-      )
+
+    this.statisticsService.getStatistics()
+      .subscribe(value => this.getStatistics(value),
+        error => this.errorHandle(error));
+  }
+
+  private getStatistics(value: Statistics[]): void {
+    this.statistics = value;
+  }
+
+  private errorHandle(error: HttpErrorResponse): void {
+    console.log(error);
+    alert(error)
   }
 
 }
