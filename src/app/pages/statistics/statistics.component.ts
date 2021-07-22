@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {StatisticsService} from "../../service/statistics.service";
 import {Statistics} from "./statistics.interface";
 import {HttpErrorResponse} from "@angular/common/http";
+
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css']
 })
-export class StatisticsComponent implements OnInit {
+export class StatisticsComponent implements OnInit, OnDestroy {
   statistics!: Statistics[];
+  private statSubscription: any;
 
   constructor(private statisticsService: StatisticsService) { }
 
+
+
   ngOnInit(): void {
 
-    this.statisticsService.getStatistics()
+    this.statSubscription = this.statisticsService.getStatistics()
       .subscribe(value => this.getStatistics(value),
         error => this.errorHandle(error));
   }
@@ -29,4 +33,9 @@ export class StatisticsComponent implements OnInit {
     alert(error)
   }
 
+  ngOnDestroy(): void {
+    if(this.statSubscription)
+      this.statSubscription.unsubscribe();
+
+  }
 }

@@ -51,8 +51,8 @@
 
 
   <div class="d-grid gap-2 col-6 mx-auto" *ngIf="shortUrl">
-    <button class="btn btn-outline-primary" type="button" (click)="navigateByUrl(shortUrl.shortUrl)">
-      your short code is: {{shortUrl.shortUrl}}
+    <button class="btn btn-outline-primary" type="button"  (click)="navigateByUrl(shortUrl.shortUrl) ">
+      your short code is: {{shortUrl.shortUrl.slice(22)}}
     </button>
   </div>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -61,3 +61,4 @@
     </button>
   </div>
 </div>
+

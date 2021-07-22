@@ -16,17 +16,13 @@ export class UrlService {
   constructor(private http: HttpClient) {
   }
 
- /* addUrl(model: Model): Observable<ShortUrl> {
-    return this.http.post<ShortUrl>(this.path, model);
-  }*/
+
 
   addUrl(model: Model) {
-    console.log("model "+ model.url);
-    const body = { url: model.url, date: model.date, id: model.id };
+    console.log("model "+ model.longUrl);
 
-    console.log(body)
 
-    return this.http.post<ShortUrl>(this.path, body, {
+    return this.http.post<ShortUrl>(this.path, model, {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
       })
