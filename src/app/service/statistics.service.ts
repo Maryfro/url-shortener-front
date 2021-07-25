@@ -7,7 +7,7 @@ import { Statistics } from '../pages/statistics/statistics.interface';
   providedIn: 'root'
 })
 export class StatisticsService {
-  private statisticsUrl: string = 'http://localhost:8080/statistics';
+  private statisticsUrl: string = 'api/statistics';
 
   constructor(private http: HttpClient) { }
 

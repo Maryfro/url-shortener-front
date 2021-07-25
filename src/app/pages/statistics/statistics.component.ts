@@ -12,9 +12,10 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class StatisticsComponent implements OnInit, OnDestroy {
   statistics!: Statistics[];
   private statSubscription: any;
+  errorMsg: string | undefined;
 
-  constructor(private statisticsService: StatisticsService) { }
-
+  constructor(private statisticsService: StatisticsService) {
+  }
 
 
   ngOnInit(): void {
@@ -25,16 +26,16 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   }
 
   private getStatistics(value: Statistics[]): void {
+    this.errorMsg = undefined;
     this.statistics = value;
   }
 
   private errorHandle(error: HttpErrorResponse): void {
-    console.log(error);
-    alert(error)
+    this.errorMsg = error.message;
   }
 
   ngOnDestroy(): void {
-    if(this.statSubscription)
+    if (this.statSubscription)
       this.statSubscription.unsubscribe();
 
   }

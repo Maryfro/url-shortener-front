@@ -1,5 +1,6 @@
 <div class="jumbotron">
-<div class="outer_container" style="margin: 10%" *ngIf="statistics">
+
+<div class="outer_container" style="margin: 10%" *ngIf="statistics && !errorMsg">
   <h1>Top 5 visited links</h1>
 <ol class="list-group list-group-numbered">
   <app-statistics-item *ngFor="let elt of statistics; index as i" [elt]="elt" [index]="i+1"></app-statistics-item>
@@ -10,4 +11,7 @@
     <button class="btn btn-primary" type="button" routerLink="/home">Back</button>
   </div>
 </div>
+</div>
+<div *ngIf="errorMsg">
+  <div class="alert-danger">{{errorMsg}}</div>
 </div>

@@ -9,13 +9,17 @@ import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { StatisticsItemComponent } from './pages/statistics/statistics-item/statistics-item.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ModalWindowComponent } from './pages/homepage/modal-window/modal-window.component';
+import {ClipboardModule} from "ngx-clipboard";
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     StatisticsComponent,
-    StatisticsItemComponent
+    StatisticsItemComponent,
+    ModalWindowComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,9 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ClipboardModule,
+    //NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

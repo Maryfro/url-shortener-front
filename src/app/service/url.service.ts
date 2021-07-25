@@ -11,7 +11,7 @@ import { catchError } from "rxjs/operators";
   providedIn: 'root'
 })
 export class UrlService {
-  private path: string = 'http://localhost:8080';
+  private path: string = 'api/';
 
   constructor(private http: HttpClient) {
   }

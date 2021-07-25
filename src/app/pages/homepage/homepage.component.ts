@@ -1,13 +1,12 @@
 import {DatePipe} from '@angular/common';
-import {ThrowStmt} from '@angular/compiler';
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TestBed} from '@angular/core/testing';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Model} from 'src/app/model/model';
 import {dateValidator} from './dateValidator';
 import {ShortUrl} from "../../model/shortUrl";
 import {UrlService} from "../../service/url.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {Subscription} from "rxjs";
 
 
 @Component({
@@ -23,7 +22,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   shortUrl!: ShortUrl;
   pattern = 'https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)';
-  private subscriptions: any[] = [];
+  private subscriptions: Subscription[] = [];
 
   constructor(private fb: FormBuilder, private datePipe: DatePipe, private urlService: UrlService) {
   }
