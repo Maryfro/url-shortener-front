@@ -7,6 +7,8 @@ import {ShortUrl} from "../../model/shortUrl";
 import {UrlService} from "../../service/url.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Subscription} from "rxjs";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalWindowComponent} from "./modal-window/modal-window.component";
 
 
 @Component({
@@ -23,8 +25,10 @@ export class HomepageComponent implements OnInit, OnDestroy {
   shortUrl!: ShortUrl;
   pattern = 'https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)';
   private subscriptions: Subscription[] = [];
+  errorMsg: string | undefined;
 
-  constructor(private fb: FormBuilder, private datePipe: DatePipe, private urlService: UrlService) {
+
+  constructor(private fb: FormBuilder, private datePipe: DatePipe, private urlService: UrlService, private modalService: NgbModal) {
   }
 
 
@@ -57,6 +61,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
    }*/
   onSubmit() {
 
+    this.errorMsg = undefined;
+
     const model: Model = {
       longUrl: this.form.value.url,
       expirationDate: this.form.value.date,
@@ -64,18 +70,19 @@ export class HomepageComponent implements OnInit, OnDestroy {
     }
 
     const addUrlSubscription = this.urlService.addUrl(model)
-      .subscribe(value => this.callBackOk(value), error => HomepageComponent.callBackError(error));
+      .subscribe(value => this.callBackOk(value), error => this.callBackError(error));
 
     this.subscriptions.push(addUrlSubscription);
   }
 
   private callBackOk(value: ShortUrl) {
     this.shortUrl = value;
-    console.log("value " + value);
+    const modal = this.modalService.open(ModalWindowComponent);
+    modal.componentInstance.shortUrl = value;
   }
 
-  private static callBackError(error: HttpErrorResponse) {
-    console.log(error)
+  private callBackError(error: HttpErrorResponse) {
+    this.errorMsg = error.message;
   }
 
   navigateByUrl(shortUrl: string) {

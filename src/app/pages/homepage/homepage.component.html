@@ -48,13 +48,14 @@
       </button>
     </form>
   </div>
-
-
-  <div class="d-grid gap-2 col-6 mx-auto" *ngIf="shortUrl">
+ <div *ngIf="shortUrl">
+<app-modal-window [shortUrl]="shortUrl"></app-modal-window>
+ </div>
+  <!--<div class="d-grid gap-2 col-6 mx-auto" *ngIf="shortUrl">
     <button class="btn btn-outline-primary" type="button"  (click)="navigateByUrl(shortUrl.shortUrl) ">
       your short code is: {{shortUrl.shortUrl.slice(22)}}
     </button>
-  </div>
+  </div>-->
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button class="btn btn-primary" type="button" routerLink="/statistics">
       View statistics

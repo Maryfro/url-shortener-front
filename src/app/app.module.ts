@@ -11,7 +11,7 @@ import { StatisticsItemComponent } from './pages/statistics/statistics-item/stat
 import {HttpClientModule} from "@angular/common/http";
 import { ModalWindowComponent } from './pages/homepage/modal-window/modal-window.component';
 import {ClipboardModule} from "ngx-clipboard";
-//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import {ClipboardModule} from "ngx-clipboard";
     ReactiveFormsModule,
     HttpClientModule,
     ClipboardModule,
-    //NgbModule,
+    NgbModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

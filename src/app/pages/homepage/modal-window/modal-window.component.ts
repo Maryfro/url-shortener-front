@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ShortUrl} from "../../../model/shortUrl";
 import {ClipboardService} from "ngx-clipboard";
-//import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-modal-window',
@@ -25,7 +25,6 @@ export class ModalWindowComponent implements OnInit {
       return;
 
     window.open(this.shortUrl.shortUrl, "_blank")
-
 
     this.activeModal.close()
   }

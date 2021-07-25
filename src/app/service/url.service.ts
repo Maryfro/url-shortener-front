@@ -16,7 +16,9 @@ export class UrlService {
   constructor(private http: HttpClient) {
   }
 
-
+ /* addUrl(model: Model): Observable<ShortUrl> {
+    return this.http.post<ShortUrl>(this.path, model);
+  }*/
 
   addUrl(model: Model) {
     console.log("model "+ model.longUrl);
